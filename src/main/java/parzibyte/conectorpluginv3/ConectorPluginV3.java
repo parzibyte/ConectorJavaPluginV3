@@ -354,7 +354,7 @@ public class ConectorPluginV3 {
             throw new Exception("código de respuesta distinto a 200. Verifique que el plugin se está ejecutando");
         }
         String respuesta = response.body();
-        if (respuesta.equals("true")) {
+        if (respuesta.equals("true\n")) {
             return true;
         } else {
             throw new Exception("petición ok pero error en el servidor: " + respuesta);
