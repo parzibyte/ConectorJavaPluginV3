@@ -23,11 +23,11 @@ public class Main {
         } catch (IOException | InterruptedException e) {
             System.out.println("Error obteniendo impresoras: " + e.getMessage());
         }
-       
 
         String amongUsComoCadena = "000001111000\n000010000100\n000100011110\n000100100001\n011100100001\n010100100001\n010100100001\n010100011110\n010100000010\n011100000010\n000100111010\n000100101010\n000111101110\n000000000000\n000000000000\n000000000000\n111010101110\n100010101000\n111010101110\n001010100010\n111011101110\n000000000000\n000000000000\n000000000000";
-
-        ConectorPluginV3 conectorPluginV3 = new ConectorPluginV3();
+        // Aquí tu serial en caso de tener uno
+        final String serial = "";
+        ConectorPluginV3 conectorPluginV3 = new ConectorPluginV3(ConectorPluginV3.URL_PLUGIN_POR_DEFECTO, serial);
         conectorPluginV3.Iniciar()
                 .DeshabilitarElModoDeCaracteresChinos()
                 .EstablecerAlineacion(ConectorPluginV3.ALINEACION_CENTRO)
@@ -67,7 +67,7 @@ public class Main {
                 .Corte(1)
                 .Pulso(48, 60, 120);
         try {
-            conectorPluginV3.imprimirEn("ZJ-58");
+            conectorPluginV3.imprimirEn("PT210");
             System.out.println("Impreso correctamente");
         } catch (Exception e) {
             System.out.println("Error imprimiendo: " + e.getMessage());

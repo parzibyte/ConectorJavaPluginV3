@@ -35,10 +35,18 @@ public class ConectorPluginV3 {
 
     public ArrayList<OperacionPluginV3> operaciones;
     public String urlPlugin;
+    public String serial;
+
+    public ConectorPluginV3(String urlPlugin, String serial) {
+        this.operaciones = new ArrayList<>();
+        this.urlPlugin = urlPlugin;
+        this.serial = serial;
+    }
 
     public ConectorPluginV3(String urlPlugin) {
         this.operaciones = new ArrayList<>();
         this.urlPlugin = urlPlugin;
+        this.serial = "";
     }
 
     public ConectorPluginV3() {
@@ -343,7 +351,7 @@ public class ConectorPluginV3 {
     }
 
     public boolean imprimirEn(String impresora) throws Exception, IOException, InterruptedException {
-        ImpresionConNombrePluginV3 impresionConNombre = new ImpresionConNombrePluginV3(this.operaciones, impresora);
+        ImpresionConNombrePluginV3 impresionConNombre = new ImpresionConNombrePluginV3(this.operaciones, impresora, this.serial);
         String postEndpoint = this.urlPlugin + "/imprimir";
         String inputJson = JSON.std.asString(impresionConNombre);
         var request = HttpRequest.newBuilder().uri(URI.create(postEndpoint)).header("Content-Type", "application/json")
